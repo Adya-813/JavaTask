@@ -1,2 +1,3 @@
 Adyasha:0
+Adi:60
 adyasha:100

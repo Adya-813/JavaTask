@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class ATMWithUserBalanceConsole {
+public class ATMWithConsole {
 
     private static final String FILE_NAME = "users.txt";
     // ANSI Colors
