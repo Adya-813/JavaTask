@@ -1,0 +1,7 @@
+-- MySQL schema
+CREATE DATABASE digital_lib; 
+CREATE DATABASE IF NOT EXISTS digital_library; 
+USE digital_library;
+CREATE TABLE IF NOT EXISTS books ( id INT PRIMARY KEY AUTO_INCREMENT, title VARCHAR(200) NOT NULL, author VARCHAR(200), available BOOLEAN DEFAULT TRUE );
+CREATE TABLE IF NOT EXISTS members ( id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(200) NOT NULL, email VARCHAR(200) );
+CREATE TABLE IF NOT EXISTS transactions ( id INT PRIMARY KEY AUTO_INCREMENT, member_id INT, book_id INT, issue_date DATE, return_date DATE, fine DECIMAL(10,2) DEFAULT 0, FOREIGN KEY (member_id) REFERENCES members(id), FOREIGN KEY (book_id) REFERENCES books(id) );

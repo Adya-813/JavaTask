@@ -1,11 +1,21 @@
 import java.util.*;
 
 public class OnlineExamSystem {
-    static int userId = 1234;
-    static int password = 4321;
+    static int userId;
+    static int password;
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        // Generate random user ID and password
+        Random rand = new Random();
+        userId = 1000 + rand.nextInt(9000);     // 4-digit random ID
+        password = 1000 + rand.nextInt(9000);   // 4-digit random Password
+
+        System.out.println("=== SYSTEM GENERATED CREDENTIALS ===");
+        System.out.println("User ID: " + userId);
+        System.out.println("Password: " + password);
+        System.out.println("====================================\n");
+
         if (login()) {
             updateProfile();
             startExam();
@@ -58,13 +68,17 @@ public class OnlineExamSystem {
 
         for (int i = 0; i < questions.length; i++) {
             long elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
-            if (elapsedTime >= timeLimit) {
-                System.out.println("\nTime is up! Auto-submitting...");
+            long remainingTime = timeLimit - elapsedTime;
+
+            if (remainingTime <= 0) {
+                System.out.println("\n⏰ Time is up! Auto-submitting...");
                 break;
             }
 
             System.out.println("\n" + questions[i]);
+            System.out.println("⏳ Remaining Time: " + remainingTime + " seconds");
             System.out.print("Your answer: ");
+
             int ans = sc.nextInt();
 
             if (ans == correctAnswers[i]) {
